@@ -5,32 +5,18 @@
  */
 package MainPackage;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
- * @author bug
+ * @author Adam Mawla
  */
-public class Customers extends javax.swing.JFrame {
+public class Accounts extends javax.swing.JFrame {
 
-    public static List<Customer> customersList = new ArrayList<>();
-    
     /**
      * Creates new form Accounts
      */
-    public Customers() {
-        customersList.add(new Customer("Adam", new Date(), "Shweifet", 76958689));
-        Account account = new CheckingAccount(customersList.get(0));
+    public Accounts() {
         initComponents();
-        setTableContent();
+        setTableContect();
     }
 
     /**
@@ -43,34 +29,42 @@ public class Customers extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        contentTable = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        accountsTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        doneButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(768, 599));
+        setMinimumSize(new java.awt.Dimension(768, 599));
+        setPreferredSize(new java.awt.Dimension(768, 599));
 
-        contentTable.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        contentTable.setModel(new javax.swing.table.DefaultTableModel(
+        accountsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {},
+                {},
+                {},
                 {}
             },
             new String [] {
 
             }
         ));
-        contentTable.setRowHeight(40);
-        contentTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                contentTableMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(contentTable);
+        jScrollPane1.setViewportView(accountsTable);
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        jButton1.setText("Add Customer");
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        jButton1.setText("Add Account");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        doneButton.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        doneButton.setText("Done");
+        doneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doneButtonActionPerformed(evt);
             }
         });
 
@@ -78,19 +72,23 @@ public class Customers extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,50 +105,41 @@ public class Customers extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static int selectedRow;
-    
-    private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
-        if(evt.getClickCount() == 2){
-            javax.swing.JTable target = (javax.swing.JTable) evt.getSource();
-            selectedRow = target.getSelectedRow();
-            CustomerDetails details = new CustomerDetails();
-            details.setLocationRelativeTo(null);
-            details.setVisible(true);
-        }
-    }//GEN-LAST:event_contentTableMouseClicked
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AddCustomer addCustomer = new AddCustomer();
-        addCustomer.setLocationRelativeTo(null);
-        addCustomer.setVisible(true);
+        AddAccount add = new AddAccount();
+        add.setLocationRelativeTo(null);
+        add.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_doneButtonActionPerformed
+
     
-    private void setTableContent(){
+    private void setTableContect(){
         
-        Object [][] contentArray = new Object [customersList.size()][4];
+        int size = Customers.customersList.get(Customers.selectedRow).getAccounts().size();
         
-//        customersList.add(new Customer("Adam", date, "Shweifet", 76958685));
+        //Change this to size 3
+        Object [][] contentArray = new Object[size][2];
         
-        for(int i = 0; i < customersList.size(); i++){    
-            Object [] customer = new Object [] { 
-                    customersList.get(i).getName(),
-                    customersList.get(i).getDob(),
-                    customersList.get(i).getAddress(),
-                    customersList.get(i).getPhoneNumber() 
-            };    
-            contentArray[i] = customer;    
+        for(int i = 0; i < size; i++){
+            Object [] account = new Object [] {
+                Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getAccountInfo(),
+                Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getCreated()
+            };
+            contentArray[i] = account;
         }
         
-        contentTable.setModel(new javax.swing.table.DefaultTableModel(
+        accountsTable.setModel(new javax.swing.table.DefaultTableModel(
                 contentArray,
                 new String [] {
-                    "Name", "Date Of Birth", "ID", "Number of accounts"
+                    "Type", "Date Created", "Transactions Date"
                 }
             ){
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false
             };
 
             @Override
@@ -177,31 +166,29 @@ public class Customers extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Accounts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Customers customers = new Customers();
-                customers.setLocationRelativeTo(null);
-                customers.setVisible(true);
+                new Accounts().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable contentTable;
+    private javax.swing.JTable accountsTable;
+    private javax.swing.JButton doneButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

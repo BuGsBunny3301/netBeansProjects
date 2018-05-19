@@ -16,6 +16,8 @@ public class AddAccount extends javax.swing.JFrame {
      */
     public AddAccount() {
         initComponents();
+        intrestLabel.setVisible(false);
+        intrestField.setVisible(false);
     }
 
     /**
@@ -32,6 +34,9 @@ public class AddAccount extends javax.swing.JFrame {
         typeCombo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         addAccountButton = new javax.swing.JToggleButton();
+        cancelButton = new javax.swing.JToggleButton();
+        intrestLabel = new javax.swing.JLabel();
+        intrestField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(724, 558));
@@ -59,6 +64,19 @@ public class AddAccount extends javax.swing.JFrame {
             }
         });
 
+        cancelButton.setFont(new java.awt.Font("Ubuntu", 0, 23)); // NOI18N
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        intrestLabel.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        intrestLabel.setText("Intrest Rate:");
+
+        intrestField.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -66,20 +84,25 @@ public class AddAccount extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(intrestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(intrestField, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 299, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                                .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(275, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,8 +113,14 @@ public class AddAccount extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 386, Short.MAX_VALUE)
-                .addComponent(addAccountButton)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(intrestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(intrestField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -110,7 +139,17 @@ public class AddAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void typeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeComboActionPerformed
-        // TODO add your handling code here:
+        if(typeCombo.getSelectedItem().toString().equals("Checking")
+                || typeCombo.getSelectedItem().toString().equals("Credit")
+                ){
+            intrestLabel.setVisible(false);
+            intrestField.setVisible(false);
+        }else if(typeCombo.getSelectedItem().toString().equals("Savings")
+                || typeCombo.getSelectedItem().toString().equals("Intrest Checking")
+                ){
+            intrestLabel.setVisible(true);
+            intrestField.setVisible(true);
+        }
     }//GEN-LAST:event_typeComboActionPerformed
 
     private void addAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAccountButtonActionPerformed
@@ -122,12 +161,18 @@ public class AddAccount extends javax.swing.JFrame {
                 new CheckingAccount(Customers.customersList.get(Customers.selectedRow));
                 break;
 
-            case "Saving":
-                new SavingsAccount(Customers.customersList.get(Customers.selectedRow));
+            case "Savings":
+                new SavingsAccount(
+                        Customers.customersList.get(Customers.selectedRow),
+                        Integer.valueOf(intrestField.getText())
+                );
                 break;
 
             case "Intrest Checking":
-                new IntrestCheckingAccount(Customers.customersList.get(Customers.selectedRow));
+                new IntrestCheckingAccount(
+                        Customers.customersList.get(Customers.selectedRow),
+                        Integer.valueOf(intrestField.getText())
+                );
                 break;
 
             case "Credit":
@@ -138,6 +183,10 @@ public class AddAccount extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(null, "Account Added");
         this.dispose();
     }//GEN-LAST:event_addAccountButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +228,9 @@ public class AddAccount extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton addAccountButton;
+    private javax.swing.JToggleButton cancelButton;
+    private javax.swing.JTextField intrestField;
+    private javax.swing.JLabel intrestLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

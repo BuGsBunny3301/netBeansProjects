@@ -11,7 +11,7 @@ public class CheckingAccount extends Account{
     
     @Override
     public String getAccountInfo() {
-        return "This is a Checking Account";
+        return "Checking Account";
     }
     
 }

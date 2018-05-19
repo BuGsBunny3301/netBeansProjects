@@ -1,23 +1,20 @@
 package MainPackage;
 
+import java.util.Date;
+
 public class Loan {
     private double amount;
     private float intrestRate;
     private float paymentPeriod;
     private double penalty;
-
-//    public Loan(Customer customer, double amount, float intrestRate, float paymentPeriod) {
-//        this.amount = amount;
-//        this.intrestRate = intrestRate;
-//        this.paymentPeriod = paymentPeriod;
-//        customer.setLoan(Loan.this);
-//    }
+    private Date created;
 
     public Loan(Loan loan, Customer customer){
         this.amount = loan.amount;
         this.intrestRate = loan.intrestRate;
         this.paymentPeriod = loan.paymentPeriod;
         customer.setLoan(loan);
+        created = new Date();
     }
 
     public Loan(double amount, float intrestRate, float paymentPeriod) {
@@ -26,10 +23,12 @@ public class Loan {
         this.paymentPeriod = paymentPeriod;
     }
     
-    
-    
     public double getAmount() {
         return amount;
+    }
+
+    public Date getCreated() {
+        return created;
     }
 
     public float getIntrestRate() {
@@ -58,5 +57,9 @@ public class Loan {
 
     public void setPenalty(double penalty) {
         this.penalty = penalty;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }

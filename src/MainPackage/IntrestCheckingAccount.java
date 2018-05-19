@@ -4,14 +4,24 @@ import java.util.Date;
 
 public class IntrestCheckingAccount extends Account{
 
-    public IntrestCheckingAccount(Customer customer) {
+    private int intrestRate;
+    
+    public IntrestCheckingAccount(Customer customer, int intrestRate) {
         super(customer);
+        this.intrestRate = intrestRate;
     }
 
+    public int getIntrestRate() {
+        return intrestRate;
+    }
+
+    public void setIntrestRate(int intrestRate) {
+        this.intrestRate = intrestRate;
+    }
     
     @Override
     public String getAccountInfo() {
-        return "This is an Intrest Checking Account";
+        return "Intrest Checking Account";
     }
     
 }

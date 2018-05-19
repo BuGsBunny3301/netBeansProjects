@@ -37,6 +37,7 @@ public class CustomerDetails extends javax.swing.JFrame {
         loanLabel = new javax.swing.JLabel();
         accountButton = new javax.swing.JButton();
         loanButton = new javax.swing.JButton();
+        accountButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(768, 561));
@@ -60,7 +61,7 @@ public class CustomerDetails extends javax.swing.JFrame {
         loanLabel.setFont(new java.awt.Font("Ubuntu", 0, 23)); // NOI18N
         loanLabel.setText("Loan:");
 
-        accountButton.setText("Add Account");
+        accountButton.setText("Accounts");
         accountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accountButtonActionPerformed(evt);
@@ -74,6 +75,13 @@ public class CustomerDetails extends javax.swing.JFrame {
             }
         });
 
+        accountButton1.setText("Done");
+        accountButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -81,29 +89,31 @@ public class CustomerDetails extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(458, 458, 458))
+                        .addContainerGap()
+                        .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 205, Short.MAX_VALUE)
-                                        .addComponent(loanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(loanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(accountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(484, 509, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(accountLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(loanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                                .addGap(251, 251, 251))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(loanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -124,7 +134,8 @@ public class CustomerDetails extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -143,16 +154,37 @@ public class CustomerDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        AddAccount account = new AddAccount();
-        account.setLocationRelativeTo(null);
-        account.setVisible(true);
+        if(Customers.customersList.get(Customers.selectedRow).getAccounts() == null){
+            AddAccount account = new AddAccount();
+            account.setLocationRelativeTo(null);
+            account.setVisible(true);
+            this.dispose();
+        }else{
+            Accounts accounts = new Accounts();
+            accounts.setLocationRelativeTo(null);
+            accounts.setVisible(true);
+            this.dispose();
+        }
+        
+        
     }//GEN-LAST:event_accountButtonActionPerformed
 
     private void loanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loanButtonActionPerformed
-        AddLoan loan = new AddLoan();
-        loan.setLocationRelativeTo(null);
-        loan.setVisible(true);
+        if(Customers.customersList.get(Customers.selectedRow).getLoan() == null){
+            AddLoan loan = new AddLoan();
+            loan.setLocationRelativeTo(null);
+            loan.setVisible(true);
+            this.dispose();
+        }else{
+            LoanDetails details = new LoanDetails();
+            details.setLocationRelativeTo(null);
+            details.setVisible(true);
+        }     
     }//GEN-LAST:event_loanButtonActionPerformed
+
+    private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_accountButton1ActionPerformed
 
     private void initLabels(){
         nameLabel.setText(Customers.customersList.get(Customers.selectedRow).getName() + " :");
@@ -164,15 +196,23 @@ public class CustomerDetails extends javax.swing.JFrame {
                 String.valueOf(Customers.customersList.get(Customers.selectedRow).getPhoneNumber()));
         
         
-        for(int i = 0; i < Customers.customersList.size(); i++){
+        int counter = 0;
+        for(int i = 0;
+                i < Customers.customersList.get(Customers.selectedRow).getAccounts().size();
+                i++){
             try{
-            accountLabel.setText(accountLabel.getText() + " " + 
-                    Customers.customersList.get(Customers.selectedRow).getAccounts()
-                            .get(i).getAccountInfo());
+//            accountLabel.setText(accountLabel.getText() + ", " +
+//                    Customers.customersList.get(Customers.selectedRow).getAccounts()
+//                            .get(i).getAccountInfo());
+
+                counter++;
+
             }catch(Exception ex){
                 accountLabel.setText("Customer has no account");
             }
         }
+        
+        accountLabel.setText("Number of Accounts: " + counter);
         
         if(Customers.customersList.get(Customers.selectedRow).getLoan() == null){
             loanLabel.setText("Customer has no loan");
@@ -218,6 +258,7 @@ public class CustomerDetails extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountButton;
+    private javax.swing.JButton accountButton1;
     private javax.swing.JLabel accountLabel;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel idLabel;

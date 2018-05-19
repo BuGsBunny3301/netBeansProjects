@@ -36,6 +36,7 @@ public class AddLoan extends javax.swing.JFrame {
         periodField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         addLoanButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(724, 558));
@@ -57,6 +58,13 @@ public class AddLoan extends javax.swing.JFrame {
         addLoanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addLoanButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Cance;");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
             }
         });
 
@@ -82,6 +90,8 @@ public class AddLoan extends javax.swing.JFrame {
                 .addGap(116, 116, 116))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -103,7 +113,9 @@ public class AddLoan extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(periodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                .addComponent(addLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -132,11 +144,18 @@ public class AddLoan extends javax.swing.JFrame {
         
         
         javax.swing.JOptionPane.showMessageDialog(null, "Loan have been added");
-        AddAccount account = new AddAccount();
-        account.setLocationRelativeTo(null);
-        account.setVisible(true);
+        CustomerDetails details = new CustomerDetails();
+        details.setLocationRelativeTo(null);
+        details.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addLoanButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        CustomerDetails details = new CustomerDetails();
+        details.setLocationRelativeTo(null);
+        details.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +195,7 @@ public class AddLoan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addLoanButton;
     private javax.swing.JTextField amountField;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JTextField intrestField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

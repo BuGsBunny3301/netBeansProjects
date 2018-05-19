@@ -11,7 +11,7 @@ public class CreditAccount extends Account{
 
     @Override
     public String getAccountInfo() {
-        return "This is a Credit Account";
+        return "Credit Account";
     }
     
 }
