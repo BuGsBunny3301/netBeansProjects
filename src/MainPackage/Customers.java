@@ -9,12 +9,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author bug
@@ -28,7 +25,12 @@ public class Customers extends javax.swing.JFrame {
      */
     public Customers() {
         customersList.add(new Customer("Adam", new Date(), "Shweifet", 76958689));
-        Account account = new CheckingAccount(customersList.get(0));
+        Account account = new CheckingAccount(customersList.get(0), 25);
+        try {
+            Transactions.transferMoney(account, account, 25);
+        } catch (IOException ex) {
+            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         setTableContent();
     }

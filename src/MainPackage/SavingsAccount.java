@@ -6,8 +6,8 @@ public class SavingsAccount extends Account{
     
     private int intrestRate;
 
-    public SavingsAccount(Customer customer, int intrestRate) {
-        super(customer);
+    public SavingsAccount(Customer customer,double balance, int intrestRate) {
+        super(customer, balance);
         this.intrestRate = intrestRate;
     }
 

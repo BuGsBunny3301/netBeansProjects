@@ -37,6 +37,8 @@ public class AddAccount extends javax.swing.JFrame {
         cancelButton = new javax.swing.JToggleButton();
         intrestLabel = new javax.swing.JLabel();
         intrestField = new javax.swing.JTextField();
+        intrestLabel1 = new javax.swing.JLabel();
+        balanceField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(724, 558));
@@ -77,6 +79,11 @@ public class AddAccount extends javax.swing.JFrame {
 
         intrestField.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
 
+        intrestLabel1.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        intrestLabel1.setText("Starting Balance:");
+
+        balanceField.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,7 +103,11 @@ public class AddAccount extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(intrestLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(balanceField, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(275, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -113,11 +124,15 @@ public class AddAccount extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(intrestLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balanceField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(intrestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(intrestField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,12 +173,13 @@ public class AddAccount extends javax.swing.JFrame {
 
         switch(typeCombo.getSelectedItem().toString()){
             case "Checking":
-                new CheckingAccount(Customers.customersList.get(Customers.selectedRow));
+                new CheckingAccount(Customers.customersList.get(Customers.selectedRow), Double.valueOf(balanceField.getText()));
                 break;
 
             case "Savings":
                 new SavingsAccount(
                         Customers.customersList.get(Customers.selectedRow),
+                        Double.valueOf(balanceField.getText()),
                         Integer.valueOf(intrestField.getText())
                 );
                 break;
@@ -171,12 +187,13 @@ public class AddAccount extends javax.swing.JFrame {
             case "Intrest Checking":
                 new IntrestCheckingAccount(
                         Customers.customersList.get(Customers.selectedRow),
+                        Double.valueOf(balanceField.getText()),
                         Integer.valueOf(intrestField.getText())
                 );
                 break;
 
             case "Credit":
-                new CreditAccount(Customers.customersList.get(Customers.selectedRow));
+                new CreditAccount(Customers.customersList.get(Customers.selectedRow), Double.valueOf(balanceField.getText()));
                 break;
         }
         
@@ -228,9 +245,11 @@ public class AddAccount extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton addAccountButton;
+    private javax.swing.JTextField balanceField;
     private javax.swing.JToggleButton cancelButton;
     private javax.swing.JTextField intrestField;
     private javax.swing.JLabel intrestLabel;
+    private javax.swing.JLabel intrestLabel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
