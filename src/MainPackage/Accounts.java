@@ -5,6 +5,10 @@
  */
 package MainPackage;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Adam Mawla
@@ -43,6 +47,7 @@ public class Accounts extends javax.swing.JFrame {
         accountsTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         doneButton = new javax.swing.JButton();
+        drawButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(768, 599));
@@ -84,17 +89,27 @@ public class Accounts extends javax.swing.JFrame {
             }
         });
 
+        drawButton.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        drawButton.setText("Draw Money");
+        drawButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drawButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(136, 136, 136)
                 .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(drawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,8 +118,9 @@ public class Accounts extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(doneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(drawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,11 +158,26 @@ public class Accounts extends javax.swing.JFrame {
                 trans.setLocationRelativeTo(null);
                 trans.setVisible(true);
                 this.dispose();
-            }else{
-                //Do transactions check here
             }
         }
     }//GEN-LAST:event_accountsTableMouseClicked
+
+    private void drawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawButtonActionPerformed
+  
+        double amount = Double.valueOf(javax.swing.JOptionPane.showInputDialog("Enter amount to draw"));
+        
+        try {
+            Transactions.drawMoney(Customers.customersList.get(Customers.selectedRow)
+                    .getAccounts().get(accountsTable.getSelectedRow())
+                    ,  amount);
+        } catch (IOException ex) {
+            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+        Accounts accounts = new Accounts();
+        accounts.setLocationRelativeTo(null);
+        accounts.setVisible(true);
+    }//GEN-LAST:event_drawButtonActionPerformed
 
     
     private void setTableContect(){
@@ -159,7 +190,6 @@ public class Accounts extends javax.swing.JFrame {
             Object [] account = new Object [] {
                 Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getAccountInfo(),
                 Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getCreated(),
-                null,
                 Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getBalance()
                 
             };
@@ -169,7 +199,7 @@ public class Accounts extends javax.swing.JFrame {
         accountsTable.setModel(new javax.swing.table.DefaultTableModel(
                 contentArray,
                 new String [] {
-                    "Type", "Date Created", "Transactions Date", "Balance"
+                    "Type", "Date Created", "Balance"
                 }
             ){
             boolean[] canEdit = new boolean [] {
@@ -221,6 +251,7 @@ public class Accounts extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable accountsTable;
     private javax.swing.JButton doneButton;
+    private javax.swing.JButton drawButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
