@@ -19,20 +19,26 @@ import java.util.logging.Logger;
 public class Customers extends javax.swing.JFrame {
 
     public static List<Customer> customersList = new ArrayList<>();
-    
+    int where = 0;
     /**
      * Creates new form Accounts
      */
     public Customers() {
-        customersList.add(new Customer("Adam", new Date(), "Shweifet", 76958689));
-        Account account = new CheckingAccount(customersList.get(0), 25);
-        try {
-            Transactions.transferMoney(account, account, 25);
-        } catch (IOException ex) {
-            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
+        if(customersList.isEmpty()){
+            customersList.add(new Customer("Adam", new Date(), "Shweifet", 76958689));
+            Account account = new CheckingAccount(customersList.get(0), 25);
+
+            customersList.add(new Customer("Khalil", new Date(), "khalde", 76989));
+            Account account1 = new CheckingAccount(customersList.get(1), 100);
         }
         initComponents();
         setTableContent();
+    }
+    
+    public Customers(int where){
+        initComponents();
+        setTableContent();
+        this.where = where;
     }
 
     /**
@@ -47,7 +53,9 @@ public class Customers extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         contentTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        transferButton = new javax.swing.JButton();
+        drawButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,11 +76,27 @@ public class Customers extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(contentTable);
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        jButton1.setText("Add Customer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        addButton.setText("Add Customer");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        transferButton.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        transferButton.setText("Transfer");
+        transferButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferButtonActionPerformed(evt);
+            }
+        });
+
+        drawButton.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        drawButton.setText("Draw");
+        drawButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                drawButtonActionPerformed(evt);
             }
         });
 
@@ -83,7 +107,11 @@ public class Customers extends javax.swing.JFrame {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(transferButton, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(drawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,7 +119,10 @@ public class Customers extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transferButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(drawButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -113,20 +144,39 @@ public class Customers extends javax.swing.JFrame {
     
     private void contentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contentTableMouseClicked
         if(evt.getClickCount() == 2){
-            javax.swing.JTable target = (javax.swing.JTable) evt.getSource();
-            selectedRow = target.getSelectedRow();
-            CustomerDetails details = new CustomerDetails();
-            details.setLocationRelativeTo(null);
-            details.setVisible(true);
+                javax.swing.JTable target = (javax.swing.JTable) evt.getSource();
+                selectedRow = target.getSelectedRow();
+            if(where == 0){
+                CustomerDetails details = new CustomerDetails();
+                details.setLocationRelativeTo(null);
+                details.setVisible(true);
+            }else{
+                Accounts accounts = new Accounts(1);
+                accounts.setLocationRelativeTo(null);
+                accounts.setVisible(true);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_contentTableMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         AddCustomer addCustomer = new AddCustomer();
         addCustomer.setLocationRelativeTo(null);
         addCustomer.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void transferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferButtonActionPerformed
+        Transfer transfer = new Transfer();
+        transfer.setLocationRelativeTo(null);
+        transfer.setVisible(true);
+    }//GEN-LAST:event_transferButtonActionPerformed
+
+    private void drawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawButtonActionPerformed
+        DrawMoney draw = new DrawMoney();
+        draw.setLocationRelativeTo(null);
+        draw.setVisible(true);
+    }//GEN-LAST:event_drawButtonActionPerformed
 
     
     private void setTableContent(){
@@ -139,7 +189,7 @@ public class Customers extends javax.swing.JFrame {
             Object [] customer = new Object [] { 
                     customersList.get(i).getName(),
                     customersList.get(i).getDob(),
-                    customersList.get(i).getAddress(),
+                    customersList.get(i).getID(),
                     customersList.get(i).getPhoneNumber() 
             };    
             contentArray[i] = customer;    
@@ -201,9 +251,11 @@ public class Customers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
     private javax.swing.JTable contentTable;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton drawButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton transferButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,12 +11,22 @@ package MainPackage;
  */
 public class Accounts extends javax.swing.JFrame {
 
+    int where = 0;
+    int index;
+    static Account selectedAccount;
+    
     /**
      * Creates new form Accounts
      */
     public Accounts() {
         initComponents();
         setTableContect();
+    }
+    
+    public Accounts(int where){
+        initComponents();
+        setTableContect();
+        this.where = where;
     }
 
     /**
@@ -37,8 +47,8 @@ public class Accounts extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(768, 599));
         setMinimumSize(new java.awt.Dimension(768, 599));
-        setPreferredSize(new java.awt.Dimension(768, 599));
 
+        accountsTable.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
         accountsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -50,6 +60,12 @@ public class Accounts extends javax.swing.JFrame {
 
             }
         ));
+        accountsTable.setRowHeight(40);
+        accountsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accountsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(accountsTable);
 
         jButton1.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -116,18 +132,36 @@ public class Accounts extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_doneButtonActionPerformed
 
+    private void accountsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountsTableMouseClicked
+        if(evt.getClickCount() == 2){
+            if(where == 1){
+                javax.swing.JTable target = (javax.swing.JTable) evt.getSource();
+                index = target.getSelectedRow();
+                selectedAccount = Customers.customersList.get(Customers.selectedRow).getAccounts().get(index);
+                Transfer trans = new Transfer();
+                trans.setLocationRelativeTo(null);
+                trans.setVisible(true);
+                this.dispose();
+            }else{
+                //Do transactions check here
+            }
+        }
+    }//GEN-LAST:event_accountsTableMouseClicked
+
     
     private void setTableContect(){
         
         int size = Customers.customersList.get(Customers.selectedRow).getAccounts().size();
         
-        //Change this to size 3
-        Object [][] contentArray = new Object[size][2];
+        Object [][] contentArray = new Object[size][3];
         
         for(int i = 0; i < size; i++){
             Object [] account = new Object [] {
                 Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getAccountInfo(),
-                Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getCreated()
+                Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getCreated(),
+                null,
+                Customers.customersList.get(Customers.selectedRow).getAccounts().get(i).getBalance()
+                
             };
             contentArray[i] = account;
         }
@@ -135,7 +169,7 @@ public class Accounts extends javax.swing.JFrame {
         accountsTable.setModel(new javax.swing.table.DefaultTableModel(
                 contentArray,
                 new String [] {
-                    "Type", "Date Created", "Transactions Date"
+                    "Type", "Date Created", "Transactions Date", "Balance"
                 }
             ){
             boolean[] canEdit = new boolean [] {

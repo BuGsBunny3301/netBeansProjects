@@ -11,7 +11,8 @@ public class Customer {
     private int phoneNumber;
     private Loan loan;
     private List<Account> accounts = new ArrayList<>();
-    private int id = 000000;
+    private int ID = 000000;
+    static int id = 000000;
 
     public Customer(String name, Date dob, String address, int phoneNumber) {
         this.name = name;
@@ -19,6 +20,7 @@ public class Customer {
         this.address = address;
         this.phoneNumber = phoneNumber;
         id++;
+        ID = id;
     }
     
     public void setLoan(Loan loan){
@@ -54,7 +56,7 @@ public class Customer {
     }
 
     public int getID() {
-        return id;
+        return ID;
     }
 
     public void setName(String name) {
@@ -74,6 +76,6 @@ public class Customer {
     }
 
     public void setID(int id) {
-        this.id = id;
+        this.ID = id;
     }
 }
