@@ -183,15 +183,15 @@ public class AddCustomer extends javax.swing.JFrame {
         }
         
         //Add a new customer with the given info from the user
-        Customers.customersList.add(
-                new Customer(
+        Customer customer = new Customer(
                         firstNameField.getText() + " " + 
                                 middleNameField.getText() + " " + lastNameField.getText(),
                         date,
                         addressField.getText(),
                         Integer.valueOf(phoneField.getText())
-                )
         );
+        
+        Transactions.addCustomer(customer);
         
         javax.swing.JOptionPane.showMessageDialog(null, "Customer Added");
         Customers customers = new Customers();

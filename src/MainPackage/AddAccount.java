@@ -5,6 +5,10 @@
  */
 package MainPackage;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author bug
@@ -174,6 +178,11 @@ public class AddAccount extends javax.swing.JFrame {
         switch(typeCombo.getSelectedItem().toString()){
             case "Checking":
                 new CheckingAccount(Customers.customersList.get(Customers.selectedRow), Double.valueOf(balanceField.getText()));
+            try {
+                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "CheckingAccount", Double.valueOf(balanceField.getText()));
+            } catch (IOException ex) {
+                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 break;
 
             case "Savings":
@@ -182,6 +191,11 @@ public class AddAccount extends javax.swing.JFrame {
                         Double.valueOf(balanceField.getText()),
                         Integer.valueOf(intrestField.getText())
                 );
+                try {
+                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "SavingsAccount", Double.valueOf(balanceField.getText()));
+            } catch (IOException ex) {
+                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 break;
 
             case "Intrest Checking":
@@ -190,10 +204,20 @@ public class AddAccount extends javax.swing.JFrame {
                         Double.valueOf(balanceField.getText()),
                         Integer.valueOf(intrestField.getText())
                 );
+                try {
+                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "IntrestCheckingAccount", Double.valueOf(balanceField.getText()));
+            } catch (IOException ex) {
+                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 break;
 
             case "Credit":
                 new CreditAccount(Customers.customersList.get(Customers.selectedRow), Double.valueOf(balanceField.getText()));
+                try {
+                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "CreditAccount", Double.valueOf(balanceField.getText()));
+            } catch (IOException ex) {
+                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 break;
         }
         

@@ -166,13 +166,9 @@ public class Accounts extends javax.swing.JFrame {
   
         double amount = Double.valueOf(javax.swing.JOptionPane.showInputDialog("Enter amount to draw"));
         
-        try {
-            Transactions.drawMoney(Customers.customersList.get(Customers.selectedRow)
-                    .getAccounts().get(accountsTable.getSelectedRow())
-                    ,  amount);
-        } catch (IOException ex) {
-            Logger.getLogger(Accounts.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Transactions.drawMoney(Customers.customersList.get(Customers.selectedRow)
+                .getAccounts().get(accountsTable.getSelectedRow())
+                ,  amount);
         this.dispose();
         Accounts accounts = new Accounts();
         accounts.setLocationRelativeTo(null);

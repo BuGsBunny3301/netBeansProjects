@@ -120,8 +120,7 @@ public class Transfer extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,11 +199,7 @@ public class Transfer extends javax.swing.JFrame {
     }//GEN-LAST:event_toChangeActionPerformed
 
     private void tranferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tranferButtonActionPerformed
-        try {
-            Transactions.transferMoney(from, to, Double.valueOf(amountField.getText()));
-        } catch (IOException ex) {
-            Logger.getLogger(Transfer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Transactions.transferMoney(from, to, Double.valueOf(amountField.getText()));
     }//GEN-LAST:event_tranferButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -226,7 +221,7 @@ public class Transfer extends javax.swing.JFrame {
                 toLabel.setText(to.getCustomer().getName() + ", " + 
                                 to.getAccountInfo() +", ID " + to.getAccountId());
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
     }
     

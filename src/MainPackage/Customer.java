@@ -14,6 +14,9 @@ public class Customer {
     private int ID = 000000;
     static int id = 000000;
 
+    public Customer() {
+    }
+    
     public Customer(String name, Date dob, String address, int phoneNumber) {
         this.name = name;
         this.dob = dob;
@@ -21,6 +24,14 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         id++;
         ID = id;
+    }
+    
+    public Customer(String name, Date dob, String address, int phoneNumber, int id) {
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.ID = id;
     }
     
     public void setLoan(Loan loan){

@@ -35,10 +35,6 @@ public abstract class Account{
         return balance;
     }
 
-//    public void setLoans(Loan Loans) {
-//        this.loan = Loans;
-//    }
-
     public void setCutomer(Customer cutomer) {
         this.customer = cutomer;
     }
@@ -54,10 +50,6 @@ public abstract class Account{
     public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
-
-//    public Loan getLoans() {
-//        return loan;
-//    }
 
     public abstract String getAccountInfo();
 }
