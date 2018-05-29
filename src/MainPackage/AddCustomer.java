@@ -5,16 +5,15 @@
  */
 package MainPackage;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author bug
- */
 public class AddCustomer extends javax.swing.JFrame {
 
     /**
@@ -173,31 +172,39 @@ public class AddCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
-        
+        try{
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = new Date();
+        Date date = null;
         try {
             date = format.parse(dobField.getText());
         } catch (ParseException ex) {
-            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            javax.swing.JOptionPane.showMessageDialog(null, "Wrong Input");
         }
-        
         //Add a new customer with the given info from the user
         Customer customer = new Customer(
-                        firstNameField.getText() + " " + 
-                                middleNameField.getText() + " " + lastNameField.getText(),
-                        date,
-                        addressField.getText(),
-                        Integer.valueOf(phoneField.getText())
+                firstNameField.getText() + " " +
+                        middleNameField.getText() + " " + lastNameField.getText(),
+                date,
+                addressField.getText(),
+                Integer.valueOf(phoneField.getText())
         );
-        
-        Transactions.addCustomer(customer);
-        
+        Customers.customersList.add(customer);
+        try {
+            Transactions.printInfo();
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        }
         javax.swing.JOptionPane.showMessageDialog(null, "Customer Added");
         Customers customers = new Customers();
         customers.setLocationRelativeTo(null);
         customers.setVisible(true);
         this.dispose();
+        }
+        catch(Exception ex){
+            javax.swing.JOptionPane.showMessageDialog(null, "Wrong Input");
+                }
     }//GEN-LAST:event_addCustomerButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

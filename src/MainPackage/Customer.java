@@ -9,10 +9,9 @@ public class Customer {
     private Date dob;
     private String address;
     private int phoneNumber;
-    private Loan loan;
     private List<Account> accounts = new ArrayList<>();
-    private int ID = 000000;
-    static int id = 000000;
+    private int ID = 0;
+    static int id = 0;
 
     public Customer() {
     }
@@ -22,6 +21,8 @@ public class Customer {
         this.dob = dob;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        if(!Customers.customersList.isEmpty())
+            id = Customers.customersList.get(Customers.customersList.size() - 1).getID();
         id++;
         ID = id;
     }
@@ -32,14 +33,6 @@ public class Customer {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.ID = id;
-    }
-    
-    public void setLoan(Loan loan){
-        this.loan = loan;
-    }
-    
-    public Loan getLoan(){
-        return loan;
     }
     
     public void addAccount(Account account){

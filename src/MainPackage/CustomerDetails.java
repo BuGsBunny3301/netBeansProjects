@@ -5,10 +5,6 @@
  */
 package MainPackage;
 
-/**
- *
- * @author bug
- */
 public class CustomerDetails extends javax.swing.JFrame {
 
     /**
@@ -35,7 +31,6 @@ public class CustomerDetails extends javax.swing.JFrame {
         idLabel = new javax.swing.JLabel();
         accountLabel = new javax.swing.JLabel();
         accountButton = new javax.swing.JButton();
-        loanButton = new javax.swing.JButton();
         accountButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,13 +56,6 @@ public class CustomerDetails extends javax.swing.JFrame {
         accountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accountButtonActionPerformed(evt);
-            }
-        });
-
-        loanButton.setText("Loan");
-        loanButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loanButtonActionPerformed(evt);
             }
         });
 
@@ -100,9 +88,7 @@ public class CustomerDetails extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addComponent(accountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(91, Short.MAX_VALUE)
-                        .addComponent(loanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap(330, Short.MAX_VALUE)
                         .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -124,7 +110,6 @@ public class CustomerDetails extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -159,19 +144,6 @@ public class CustomerDetails extends javax.swing.JFrame {
         
     }//GEN-LAST:event_accountButtonActionPerformed
 
-    private void loanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loanButtonActionPerformed
-        if(Customers.customersList.get(Customers.selectedRow).getLoan() == null){
-            AddLoan loan = new AddLoan();
-            loan.setLocationRelativeTo(null);
-            loan.setVisible(true);
-            this.dispose();
-        }else{
-            LoanDetails details = new LoanDetails();
-            details.setLocationRelativeTo(null);
-            details.setVisible(true);
-        }     
-    }//GEN-LAST:event_loanButtonActionPerformed
-
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_accountButton1ActionPerformed
@@ -198,46 +170,6 @@ public class CustomerDetails extends javax.swing.JFrame {
         
         accountLabel.setText("Number of Accounts: " + counter);
         
-//        if(Customers.customersList.get(Customers.selectedRow).getLoan() == null){
-//            loanLabel.setText("Customer has no loan");
-//        }else{
-//            loanLabel.setText("Customer has a loan");
-//        }
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomerDetails().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -247,7 +179,6 @@ public class CustomerDetails extends javax.swing.JFrame {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel idLabel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton loanButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel phoneLabel;
     // End of variables declaration//GEN-END:variables

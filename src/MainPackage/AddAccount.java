@@ -5,14 +5,11 @@
  */
 package MainPackage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author bug
- */
 public class AddAccount extends javax.swing.JFrame {
 
     /**
@@ -173,54 +170,38 @@ public class AddAccount extends javax.swing.JFrame {
 
     private void addAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAccountButtonActionPerformed
         
-//        new CreditAccount(Customers.customersList.get(Customers.selectedRow));
-
+        //        new CreditAccount(Customers.customersList.get(Customers.selectedRow));
+        
         switch(typeCombo.getSelectedItem().toString()){
             case "Checking":
                 new CheckingAccount(Customers.customersList.get(Customers.selectedRow), Double.valueOf(balanceField.getText()));
-            try {
-                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "CheckingAccount", Double.valueOf(balanceField.getText()));
-            } catch (IOException ex) {
-                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
-            }
                 break;
-
+                
             case "Savings":
                 new SavingsAccount(
                         Customers.customersList.get(Customers.selectedRow),
                         Double.valueOf(balanceField.getText()),
                         Integer.valueOf(intrestField.getText())
                 );
-                try {
-                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "SavingsAccount", Double.valueOf(balanceField.getText()));
-            } catch (IOException ex) {
-                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
-            }
                 break;
-
+                
             case "Intrest Checking":
                 new IntrestCheckingAccount(
                         Customers.customersList.get(Customers.selectedRow),
                         Double.valueOf(balanceField.getText()),
                         Integer.valueOf(intrestField.getText())
                 );
-                try {
-                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "IntrestCheckingAccount", Double.valueOf(balanceField.getText()));
-            } catch (IOException ex) {
-                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
-            }
                 break;
-
+                
             case "Credit":
                 new CreditAccount(Customers.customersList.get(Customers.selectedRow), Double.valueOf(balanceField.getText()));
-                try {
-                Transactions.addAccount(Customers.customersList.get(Customers.selectedRow), "CreditAccount", Double.valueOf(balanceField.getText()));
-            } catch (IOException ex) {
-                Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
-            }
                 break;
         }
-        
+        try {
+            Transactions.printInfo();
+        } catch (IOException ex) {
+            Logger.getLogger(AddAccount.class.getName()).log(Level.SEVERE, null, ex);
+        }
         javax.swing.JOptionPane.showMessageDialog(null, "Account Added");
         this.dispose();
     }//GEN-LAST:event_addAccountButtonActionPerformed
@@ -228,44 +209,6 @@ public class AddAccount extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-//                AddAccount account = new AddAccount();
-//                account.setLocationRelativeTo(null);
-//                account.setVisible(true);
-                    new AddAccount().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton addAccountButton;

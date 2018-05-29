@@ -69,9 +69,7 @@
                           <Component id="accountLabel" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="91" max="32767" attributes="0"/>
-                          <Component id="loanButton" min="-2" pref="226" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace pref="330" max="32767" attributes="0"/>
                           <Component id="accountButton" min="-2" pref="226" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="accountButton1" min="-2" pref="226" max="-2" attributes="0"/>
@@ -97,7 +95,6 @@
                   <EmptySpace pref="159" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="accountButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                      <Component id="loanButton" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="accountButton1" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -151,14 +148,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accountButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="loanButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Loan"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loanButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="accountButton1">

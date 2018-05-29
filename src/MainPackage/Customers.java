@@ -13,12 +13,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-/**
- *
- * @author bug
- */
 public class Customers extends javax.swing.JFrame {
 
+    //Used arrayList to let the size be equal to the customers saved
     public static List<Customer> customersList = new ArrayList<>();
     int where = 0;
     /**
@@ -34,22 +31,6 @@ public class Customers extends javax.swing.JFrame {
             Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-//        try {
-//            Transactions.eraseText();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Customers.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
-//        Transactions.addAccount(new Customer(), "stuff", 25);
-        
-//        
-//        if(customersList.isEmpty()){
-//            customersList.add(new Customer("Adam", new Date(), "Shweifet", 76958689));
-//            Account account = new CheckingAccount(customersList.get(0), 25);
-//
-//            customersList.add(new Customer("Khalil", new Date(), "khalde", 76989));
-//            Account account1 = new CheckingAccount(customersList.get(1), 100);
-//        }
         initComponents();
         setTableContent();
     }

@@ -23,8 +23,7 @@ import javax.swing.JOptionPane;
 public class Transactions {
     
     public static void transferMoney(Account from, Account to, double amount){
-        
-        File logFile = new File("/home/bug/Desktop/Transactions.txt");
+        File logFile = new File("C:\\Users\\user\\Desktop\\Transactions.txt");
         FileWriter writer = null;
         try {
             writer = new FileWriter(logFile.getAbsoluteFile(), true);
@@ -38,8 +37,8 @@ public class Transactions {
                 writer.write("Failed to transfer "+ amount +  "$ from " + from.getCustomer().getName() + "'s "
                         + from.getAccountInfo()
                 + " to " + to.getCustomer().getName() + "'s " + to.getAccountInfo());
-                writer.write("\n");
-                writer.write("\n");
+                writer.write("\r\n");
+                writer.write("\r\n");
             } catch (IOException ex) {
                 Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -52,314 +51,16 @@ public class Transactions {
                 writer.write("An amount of " + amount + "$ was transfered from " + from.getCustomer().getName()
                         + "'s " + from.getAccountInfo() +" to " + to.getCustomer().getName() + "'s " + 
                         to.getAccountInfo() + " scuccefully");
-                writer.write("\n");
-                writer.write("\n");
+                writer.write("\r\n");
+                writer.write("\r\n");
             } catch (IOException ex) {
                 Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-    public static void readTransactions(){
-        
-        final String FILENAME = "/home/bug/Desktop/Transactions.txt";
-        
-        BufferedReader br = null;
-        FileReader fr = null;
-        
-        try {
-                fr = new FileReader(FILENAME);
-                br = new BufferedReader(fr);
 
-                String sCurrentLine;
-
-                while ((sCurrentLine = br.readLine()) != null) {
-                        JOptionPane.showMessageDialog(null, sCurrentLine);
-                }
-        }catch(IOException e){
-            e.printStackTrace();
-        }finally{
-            try{
-                if (br != null)
-                    br.close();
-
-                if (fr != null)
-                    fr.close();
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-        }
-    }
-    
-    public static void addCustomer(Customer customer){
-        final String FILENAME = "/home/bug/Desktop/Files/" + customer.getName() + customer.getID() + ".txt";
-        SimpleDateFormat sdf = new SimpleDateFormat(
-            "MM/dd/yyyy");
-        
-        PrintWriter writer = null;
-        
-        try {
-            writer = new PrintWriter(FILENAME, "UTF-8");
-        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-                writer.write(
-                        "Customer:\n" +
-                                customer.getName() + "\n" +
-                                sdf.format(customer.getDob()) + "\n" +
-                                customer.getAddress() + "\n" +
-                                customer.getPhoneNumber() + "\n" +
-                                customer.getLoan() + "\n" +
-                                customer.getID() + "\n" +
-                                "Accounts:\n"
-                );
-            } catch (IOException ex) {
-                Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-    
-    public static void copyText() throws FileNotFoundException, IOException{
-        FileChannel src = new FileInputStream("/home/bug/Desktop/Info.txt").getChannel();
-        FileChannel dest = new FileOutputStream("/home/bug/Desktop/input.txt").getChannel();
-        dest.transferFrom(src, 0, src.size());
-    }
-    
-    public static void eraseText() throws FileNotFoundException, IOException{
-        PrintWriter pw = new PrintWriter("/home/bug/Desktop/Info.txt");
-        BufferedReader br1 = new BufferedReader(new FileReader("/home/bug/Desktop/input.txt"));
-        String line1 = br1.readLine();
-        
-         while(line1 != null)
-        {
-            boolean flag = false;
-             
-            // BufferedReader object for delete.txt
-            BufferedReader br2 = new BufferedReader(new FileReader("/home/bug/Desktop/delete.txt"));
-             
-            String line2 = br2.readLine();
-             
-            // loop for each line of delete.txt
-            while(line2 != null)
-            {
-                if(line1.equals(line2))
-                {
-                    flag = true;
-                    break;
-                }
-                 
-                line2 = br2.readLine();
-            }
-             
-            // if flag = false
-            // write line of input.txt to output.txt
-            if(!flag)
-                pw.println(line1);
-             
-            line1 = br1.readLine();
-             
-        }
-         
-        pw.flush();
-         
-        // closing resources
-        br1.close();
-        pw.close();
-         
-        System.out.println("File operation performed successfully");
-        
-    }
-    
-    public static void addAccount(Customer customer, String type, double balance) throws IOException{
-        
-         final String FILENAME = "/home/bug/Desktop/Info.txt";
-        
-//        File logFile = new File("/home/bug/Desktop/delete.txt");
-//        FileWriter writer = null;
-//        try {
-//            writer = new FileWriter(logFile.getAbsoluteFile(), true);
-//        } catch (IOException ex) {
-//            Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
-            SimpleDateFormat sdf = new SimpleDateFormat(
-                "MM/dd/yyyy");
-        
-        copyText();
-        
-        PrintWriter writer1 = new PrintWriter("/home/bug/Desktop/delete.txt");
-        writer1.print(
-                "Customer:\n" +
-                        customer.getName() + "\n" +
-                        sdf.format(customer.getDob()) + "\n" +
-                        customer.getAddress() + "\n" +
-                        customer.getPhoneNumber()+ "\n" +
-                        customer.getLoan() + "\n" +
-                        customer.getID() + "\n" +
-                        "Accounts:\n"
-        );
-        for(int i = 0; i < customer.getAccounts().size(); i++){
-            switch(customer.getAccounts().get(i).getAccountInfo()){
-                case "Credit Account":
-                        writer1.print("CreditAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-//                        new CreditAccount(customer, balance);
-                        break;
-                    case "Checking Account":
-                        writer1.print("CheckingAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-//                        new CheckingAccount(customer, balance);
-                        break;
-                    case "Intrest Checking Account":
-                        writer1.print("IntrestCheckingAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-//                        new IntrestCheckingAccount(customer, balance, 2);
-                        break;
-                    case "Savings Account":
-                        writer1.print("SavingsAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-//                        new SavingsAccount(customer, balance, 2);
-                        break;
-            }
-        }
-        
-        writer1.print("Done");
-        
-        writer1.close();
-        
-        eraseText();
-        
-        
-        File logFile = new File(FILENAME);
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(logFile.getAbsoluteFile(), true);
-        } catch (IOException ex) {
-            Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-                writer.write(
-                        "Customer:\n" +
-                                customer.getName() + "\n" +
-                                sdf.format(customer.getDob()) + "\n" +
-                                customer.getAddress() + "\n" +
-                                customer.getPhoneNumber() + "\n" +
-                                customer.getLoan() + "\n" +
-                                customer.getID() + "\n" +
-                                "Accounts:\n"
-                );
-                
-                for(int i = 0; i < customer.getAccounts().size() - 1; i++){
-                    switch(customer.getAccounts().get(i).getAccountInfo()){
-                        case "Credit Account":
-                                writer.write("CreditAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-        //                        new CreditAccount(customer, balance);
-                                break;
-                            case "Checking Account":
-                                writer.write("CheckingAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-        //                        new CheckingAccount(customer, balance);
-                                break;
-                            case "Intrest Checking Account":
-                                writer.write("IntrestCheckingAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-        //                        new IntrestCheckingAccount(customer, balance, 2);
-                                break;
-                            case "Savings Account":
-                                writer.write("SavingsAccount\n" + customer.getAccounts().get(i).getBalance() + "\n");
-        //                        new SavingsAccount(customer, balance, 2);
-                                break;
-                    }
-        }
-            switch(type){
-                    case "CreditAccount":
-                        writer.write("CreditAccount\n" + balance + "\nDone");
-//                        new CreditAccount(customer, balance);
-                        break;
-                    case "CheckingAccount":
-                        writer.write("CheckingAccount\n" + balance + "\nDone");
-//                        new CheckingAccount(customer, balance);
-                        break;
-                    case "IntrestCheckingAccount":
-                        writer.write("IntrestCheckingAccount\n" + balance + "\nDone");
-//                        new IntrestCheckingAccount(customer, balance, 2);
-                        break;
-                    case "SavingsAccount":
-                        writer.write("SavingsAccount\n" + balance + "\nDone");
-//                        new SavingsAccount(customer, balance, 2);
-                        break;
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-//        File logFile = new File(FILENAME);
-//        FileWriter writer = null;
-//        try {
-//            writer = new FileWriter(logFile.getAbsoluteFile(), true);
-//        } catch (IOException ex) {
-//            Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//            try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-//                
-//                switch(type){
-//                    case "CreditAccount":
-//                        writer.write("CreditAccount\n" + balance + "\nDone");
-////                        new CreditAccount(customer, balance);
-//                        break;
-//                    case "CheckingAccount":
-//                        writer.write("CheckingAccount\n" + balance + "\nDone");
-////                        new CheckingAccount(customer, balance);
-//                        break;
-//                    case "IntrestCheckingAccount":
-//                        writer.write("IntrestCheckingAccount\n" + balance + "\nDone");
-////                        new IntrestCheckingAccount(customer, balance, 2);
-//                        break;
-//                    case "SavingsAccount":
-//                        writer.write("SavingAccount\n" + balance + "\nDone");
-////                        new SavingsAccount(customer, balance, 2);
-//                        break;
-//                }
-//                
-////                writer.write(
-////                        
-////                );
-//            } catch (IOException ex) {
-//                Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-        
-//        BufferedReader br = null;
-//        FileReader fr = null;
-//        
-//        try {
-//                fr = new FileReader("/home/bug/Desktop/Info.txt");
-//                br = new BufferedReader(fr);
-//
-//                String sCurrentLine;
-////                while((sCurrentLine = br.readLine()) != null) {
-////                    if(sCurrentLine.equals("Accounts:")){
-//                    try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-//                        writer.write("Testing");
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-////                    }
-////                }
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-//        finally{
-//            try{
-//                if (br != null)
-//                    br.close();
-//
-//                if (fr != null)
-//                    fr.close();
-//            }catch(IOException e){
-//                e.printStackTrace();
-//            }
-//        }
-    }
-    
     public static void readInfo() throws ParseException{
-        final String FILENAME = "/home/bug/Desktop/Info.txt";
+        final String FILENAME = "C:\\Users\\user\\Desktop\\Info.txt";
         
         BufferedReader br = null;
         FileReader fr = null;
@@ -372,9 +73,7 @@ public class Transactions {
                 String name, address;
                 int phoneNumber, id;
                 Date dob;
-                Loan loan;
                 double balance;
-                ArrayList<Account> accounts = new ArrayList<>();
 
                 while ((sCurrentLine = br.readLine()) != null) {
                                 name = br.readLine();
@@ -382,7 +81,6 @@ public class Transactions {
                                 dob = format.parse(br.readLine());
                                 address = br.readLine();
                                 phoneNumber = Integer.parseInt(br.readLine());
-                                sCurrentLine = br.readLine();
                                 id = Integer.parseInt(br.readLine());
                                 Customers.customersList.add(new Customer(name, dob, address, phoneNumber, id));
                                 br.readLine();
@@ -421,7 +119,7 @@ public class Transactions {
     
     public static void drawMoney(Account account, double amount){
         
-        File logFile = new File("/home/bug/Desktop/Transactions.txt");
+        File logFile = new File("C:\\Users\\user\\Desktop\\Transactions.txt");
         FileWriter writer = null;
         try {
             writer = new FileWriter(logFile.getAbsoluteFile(), true);
@@ -436,8 +134,8 @@ public class Transactions {
             try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
                     writer.write(amount + "$ was drawn from " + account.getCustomer().getName() + "'s " + 
                             account.getAccountInfo());
-                    writer.write("\n");
-                    writer.write("\n");
+                    writer.write("\r\n");
+                    writer.write("\r\n");
             } catch (IOException ex) {
                 Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -447,39 +145,61 @@ public class Transactions {
             try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
                     writer.write("Failed to draw " + amount + "$ from " + account.getCustomer().getName() + "'s " +
                             account.getAccountInfo());
-                    writer.write("\n");
-                    writer.write("\n");
+                    writer.write("\r\n");
+                    writer.write("\r\n");
             } catch (IOException ex) {
                 Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
     
-    public static void addMoney(Account account, double amount){
+    public static void printInfo() throws FileNotFoundException, UnsupportedEncodingException, IOException{
+    final String FILENAME = "C:\\Users\\user\\Desktop\\Info.txt";
+        SimpleDateFormat sdf = new SimpleDateFormat(
+            "MM/dd/yyyy");
         
-        account.setBalance(account.getBalance() + amount);
+        PrintWriter writer = null;
         
-        File logFile = new File("/home/bug/Desktop/output.txt");
-        FileWriter writer = null;
         try {
-            writer = new FileWriter(logFile.getAbsoluteFile(), true);
-        } catch (IOException ex) {
-            Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
+            writer = new PrintWriter(FILENAME, "UTF-8");
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
         }
         
-        JOptionPane.showMessageDialog(null, "Money Draw Succefull");
-            
             try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-                    writer.write(amount + "$ was added to " + account.getCustomer().getName() + "'s " + 
-                            account.getAccountInfo());
-                    writer.write("\n");
-                    writer.write("\n");
-            } catch (IOException ex) {
-            Logger.getLogger(Transactions.class.getName()).log(Level.SEVERE, null, ex);
+                for (Customer cust : Customers.customersList) {
+            writer.print(
+                    "Customer:\r\n" +
+                            cust.getName() + "\r\n" +
+                            sdf.format(cust.getDob()) + "\r\n" +
+                            cust.getAddress() + "\r\n" +
+                            cust.getPhoneNumber()+ "\r\n" +
+                            cust.getID() + "\r\n" +
+                                    "Accounts:\r\n"
+            );
+            
+            for(int j = 0; j < cust.getAccounts().size(); j++){
+                switch(cust.getAccounts().get(j).getAccountInfo()){
+                    case "Credit Account":
+                        writer.print("CreditAccount\r\n" + cust.getAccounts().get(j).getBalance() + "\r\n");
+//                        new CreditAccount(customer, balance);
+                        break;
+                    case "Checking Account":
+                        writer.print("CheckingAccount\r\n" + cust.getAccounts().get(j).getBalance() + "\r\n");
+//                        new CheckingAccount(customer, balance);
+                        break;
+                    case "Intrest Checking Account":
+                        writer.print("IntrestCheckingAccount\r\n" + cust.getAccounts().get(j).getBalance() + "\r\n");
+//                        new IntrestCheckingAccount(customer, balance, 2);
+                        break;
+                    case "Savings Account":
+                        writer.print("SavingsAccount\r\n" + cust.getAccounts().get(j).getBalance() + "\r\n");
+//                        new SavingsAccount(customer, balance, 2);
+                        break;
+                }
+            }
+            writer.print("Done\r\n");
         }
+            }
     }
     
-    public static void giveLoan(Customer to, Loan loan){
-        new Loan(loan,  to);
-    }
 }
